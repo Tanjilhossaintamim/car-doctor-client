@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="flex justify-between flex-wrap space-y-4 lg:space-y-0 px-4 lg:px-0 lg:items-center bg-color-dark-1 max-w-6xl mx-auto py-6 lg:h-[477px]">
+    <footer className="flex flex-wrap space-y-4 lg:space-y-0 px-4 lg:px-0 lg:items-center bg-color-dark-1 max-w-6xl mx-auto py-6 lg:h-[477px]">
       <div className="w-full lg:w-1/4">
         <div className="flex flex-col justify-start gap-4">
           {/* logo */}
@@ -109,7 +109,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="w-full lg:w-1/4">
+      <div className="w-full lg:w-1/5">
         <h1 className="text-xl text-white font-semibold mb-10">About</h1>
         <div className="text-color-dark-8 flex flex-col gap-4">
           <Link>Home</Link>
@@ -117,7 +117,7 @@ const Footer = () => {
           <Link>Contact</Link>
         </div>
       </div>
-      <div className="w-full lg:w-1/4">
+      <div className="w-full lg:w-1/5">
         <h1 className="text-xl text-white font-semibold mb-10">Company</h1>
         <div className="text-color-dark-8 flex flex-col gap-4">
           <Link>Why Car Doctor</Link>
@@ -125,7 +125,7 @@ const Footer = () => {
           <Link>Connect</Link>
         </div>
       </div>
-      <div className="w-full lg:w-1/4">
+      <div className="w-full lg:w-1/5">
         <h1 className="text-xl text-white font-semibold mb-10">Support</h1>
         <div className="text-color-dark-8 flex flex-col gap-4">
           <Link>Support Center</Link>
