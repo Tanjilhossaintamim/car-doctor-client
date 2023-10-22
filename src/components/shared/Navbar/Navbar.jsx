@@ -1,6 +1,12 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, userLogout } = useContext(AuthContext);
+  const handelLogout = () => {
+    userLogout().then((res) => console.log(res));
+  };
   return (
     <nav className="py-8 flex justify-between items-center">
       {/* left side */}
@@ -141,11 +147,17 @@ const Navbar = () => {
             />
           </svg>
         </div>
-        <Link to="/login">
-          <button className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
-            Login
+        {!user ? (
+          <Link to="/login">
+            <button className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
+              Login
+            </button>
+          </Link>
+        ) : (
+          <button onClick={handelLogout} className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
+            Logout
           </button>
-        </Link>
+        )}
       </div>
     </nav>
   );

@@ -34,10 +34,10 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
   useEffect(() => {
-    const subscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
+    const subscribe = onAuthStateChanged(auth, (currentuser) => {
+      setUser(currentuser);
     });
+    setLoading(false);
     return () => subscribe();
   }, []);
   const allValues = {
