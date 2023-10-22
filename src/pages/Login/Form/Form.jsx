@@ -1,12 +1,32 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Form = () => {
+  const { userLogin, signInWithGoogle } = useContext(AuthContext);
+
+  const handelGoogleSignup = () => {
+    signInWithGoogle().then((res) => console.log(res));
+  };
+  const handelLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+    userLogin(email, password)
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="flex flex-col items-center border border-color-dark-6 rounded-lg justify-center">
       <h1 className="text-center text-color-dark-2 text-4xl font-semibold">
         Login
       </h1>
-      <form className="flex flex-col gap-5 w-3/4 mx-auto mt-4">
+      <form
+        className="flex flex-col gap-5 w-3/4 mx-auto mt-4"
+        onSubmit={handelLogin}
+      >
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="email"
@@ -20,6 +40,7 @@ const Form = () => {
             id="email"
             placeholder="Your Email"
             className="h-[40px] border border-color-dark-6 rounded-lg px-4"
+            required
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -35,6 +56,7 @@ const Form = () => {
             id="password"
             placeholder="Your password"
             className="h-[40px] border border-color-dark-6 rounded-lg px-4"
+            required
           />
         </div>
         <button className="w-full h-[40px] bg-color-orange text-white rounded-lg text-xl font-semibold">
@@ -76,7 +98,7 @@ const Form = () => {
               />
             </svg>
           </span>
-          <span className="w-12 h-12 rounded-full bg-[#F5F5F8] flex justify-center items-center">
+          <span onClick={handelGoogleSignup} className="w-12 h-12 rounded-full bg-[#F5F5F8] cursor-pointer flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

@@ -1,12 +1,32 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Form = () => {
+  const { userSignup, signInWithGoogle } = useContext(AuthContext);
+
+  const handelGoogleSignup = () => {
+    signInWithGoogle().then((res) => console.log(res));
+  };
+  const handelSignup = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    // const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    userSignup(email, password)
+      .then((res) => console.log(res.user))
+      .catch((error) => console.log(error));
+  };
   return (
-    <div className="flex flex-col items-center border border-color-dark-6 rounded-lg justify-center">
+    <div className="flex flex-col items-center border border-color-dark-6 rounded-lg justify-center py-5">
       <h1 className="text-center text-color-dark-2 text-4xl font-semibold">
         Sign Up
       </h1>
-      <form className="flex flex-col gap-5 w-3/4 mx-auto mt-4">
+      <form
+        className="flex flex-col gap-5 w-3/4 mx-auto mt-4"
+        onSubmit={handelSignup}
+      >
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="name"
@@ -20,6 +40,7 @@ const Form = () => {
             id="name"
             placeholder="Your Name"
             className="h-[40px] border border-color-dark-6 rounded-lg px-4"
+            required
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -35,6 +56,7 @@ const Form = () => {
             id="email"
             placeholder="Your Email"
             className="h-[40px] border border-color-dark-6 rounded-lg px-4"
+            required
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -50,6 +72,7 @@ const Form = () => {
             id="password"
             placeholder="Your password"
             className="h-[40px] border border-color-dark-6 rounded-lg px-4"
+            required
           />
         </div>
         <button className="w-full h-[40px] bg-color-orange text-white rounded-lg text-xl font-semibold">
@@ -91,7 +114,10 @@ const Form = () => {
               />
             </svg>
           </span>
-          <span className="w-12 h-12 rounded-full bg-[#F5F5F8] flex justify-center items-center">
+          <span
+            onClick={handelGoogleSignup}
+            className="w-12 h-12 rounded-full bg-[#F5F5F8] flex justify-center items-center cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
