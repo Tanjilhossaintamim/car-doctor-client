@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -141,9 +141,11 @@ const Navbar = () => {
             />
           </svg>
         </div>
-        <button className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
-          Appointment
-        </button>
+        <Link to="/login">
+          <button className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
+            Login
+          </button>
+        </Link>
       </div>
     </nav>
   );
