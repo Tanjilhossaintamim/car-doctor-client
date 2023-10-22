@@ -4,7 +4,7 @@ const BannerLogo = ({ image }) => {
     <div
       className="h-full rounded-xl"
       style={{
-        background: `linear-gradient(0deg, rgba(0, 0, 0, 0.49), rgba(0, 0, 0, 0.49)),url(${image})`,
+        background: `linear-gradient(0deg, #151515, rgba(21,21,21,0)),url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
