@@ -2,7 +2,7 @@ import Star from "../../../components/shared/Star/Star";
 
 const Product = ({ img, title, price }) => {
   return (
-    <div className="border border-color-dark-6 rounded-lg p-4 h-[389px] flex flex-col cursor-pointer ">
+    <div className="group/item border border-color-dark-6 rounded-lg p-4 h-[389px] flex flex-col cursor-pointer ">
       <div className="h-[215px] relative flex justify-center items-center bg-color-dark-8">
         <img
           src={img}
@@ -10,7 +10,7 @@ const Product = ({ img, title, price }) => {
           width={"100%"}
           className="w-1/2 mx-auto  object-cover"
         />
-        <div className="bg-white w-[53px] h-[53px] rounded-md flex justify-center items-center absolute top-5 right-5">
+        <div className="group/edit invisible bg-white w-[53px] h-[53px] rounded-md flex justify-center items-center absolute top-5 right-5 group-hover/item:visible transition-all">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
