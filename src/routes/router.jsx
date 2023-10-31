@@ -3,6 +3,8 @@ import { Main } from "../layout/MainLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import Checkout from "../pages/Checkout/Checkout";
+import Bookings from "../pages/Bookings/Bookings";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,16 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/checkout/:id",
+        element: <Checkout />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+      },
+      {
+        path: "/booking",
+        element: <Bookings />,
+      },
     ],
   },
   {
@@ -20,8 +32,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path:'/register',
-    element:<Register/>
-  }
+    path: "/register",
+    element: <Register />,
+  },
 ]);
 export default router;

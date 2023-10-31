@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import axios from "axios";
 
 const Form = () => {
   const { userLogin, signInWithGoogle } = useContext(AuthContext);
@@ -15,7 +16,15 @@ const Form = () => {
     const email = form.email.value;
     const password = form.password.value;
     userLogin(email, password)
-      .then((res) => console.log(res))
+      .then((res) => {
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { user: email },
+            { withCredentials: true }
+          )
+          .then((response) => console.log(response.data));
+      })
       .catch((error) => console.log(error));
   };
   return (
@@ -98,7 +107,10 @@ const Form = () => {
               />
             </svg>
           </span>
-          <span onClick={handelGoogleSignup} className="w-12 h-12 rounded-full bg-[#F5F5F8] cursor-pointer flex justify-center items-center">
+          <span
+            onClick={handelGoogleSignup}
+            className="w-12 h-12 rounded-full bg-[#F5F5F8] cursor-pointer flex justify-center items-center"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"

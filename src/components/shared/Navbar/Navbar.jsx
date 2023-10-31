@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import axios from "axios";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const handelLogout = () => {
-    userLogout().then((res) => console.log(res));
+    userLogout().then((res) =>
+      axios.post("http://localhost:5000/logout", {}, { withCredentials: true })
+    );
   };
   return (
     <nav className="py-8 flex justify-between items-center">
@@ -100,7 +103,7 @@ const Navbar = () => {
             <NavLink to="/about">About</NavLink>
           </li>
           <li>
-            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/booking">Bookings</NavLink>
           </li>
           <li>
             <NavLink to="/blog">Blog </NavLink>
@@ -154,7 +157,10 @@ const Navbar = () => {
             </button>
           </Link>
         ) : (
-          <button onClick={handelLogout} className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300">
+          <button
+            onClick={handelLogout}
+            className="text-lg font-semibold text-color-orange border border-color-orange px-4 py-2 rounded hover:bg-color-orange hover:text-white transition-colors duration-300"
+          >
             Logout
           </button>
         )}
